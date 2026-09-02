@@ -34,7 +34,7 @@ export default function Contact() {
           if (!e.isIntersecting || started) return;
           started = true;
           io.disconnect();
-          const s = Math.max(80, Math.min(window.innerWidth * 0.18, 180));
+          const s = Math.max(52, Math.min(window.innerWidth * 0.16, 180));
           const writers = chars.map((el) => {
             el.innerHTML = "";
             return HanziWriter.create(el, el.dataset.char, {

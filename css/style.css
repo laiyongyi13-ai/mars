@@ -21,11 +21,11 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 body {
   font-family: var(--sans); color: var(--cream); background: #1a0a06;
   -webkit-tap-highlight-color: transparent;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.1; }
 a { color: inherit; text-decoration: none; }
@@ -930,7 +930,6 @@ body.cursor-hover .cursor-ring {
   .garden-planet { width: 600px; height: 600px; bottom: -280px; }
 }
 @media (max-width: 767px) {
-  .section-content { padding: 80px 5vw 60px; }
   .nav-links {
     position: fixed; top: 0; right: 0; height: 100vh; width: 68%;
     flex-direction: column; justify-content: center; align-items: center; gap: 28px;
@@ -948,12 +947,11 @@ body.cursor-hover .cursor-ring {
     background: linear-gradient(180deg, var(--flower-red), var(--flower-blue), var(--flower-orange));
     opacity: 0.2;
   }
+  .garden { min-height: 108vh; }
   .garden-scene { min-height: 420px; }
   .garden-planet { width: 480px; height: 480px; bottom: -220px; }
   .garden-flower { transform: scale(0.8) !important; }
   .gf-preview { display: none; }
-  .contact-glow { width: 340px; height: 340px; }
-  .contact-links { gap: 14px; }
   .scene-progress { right: 12px; gap: 18px; }
   .scene-progress .sp-dot { width: 28px; height: 28px; }
   .scene-progress .sp-label { display: none; }
@@ -970,9 +968,9 @@ body.cursor-hover .cursor-ring {
   .hero-eyebrow { font-size: 0.78rem; letter-spacing: 0.24em; }
   .hero-sub { font-size: 1.05rem; line-height: 1.75; margin-bottom: 32px; }
 
-  /* —— About（保留滚动空间以维持 3D 分镜节奏，吉祥物在占位区透出） —— */
-  .about { min-height: 150vh; }
-  .about-mascot-slot { min-height: 46vh; }
+  /* —— About（顶对齐避免内容居中撑出大片空白；保留占位供 3D 吉祥物透出） —— */
+  .about { min-height: auto; align-items: flex-start; }
+  .about-mascot-slot { min-height: 40vh; }
   .diary-line { font-size: 1.5rem; padding-left: 14px; }
   .about-copy p { font-size: 1.02rem; line-height: 1.75; }
   .edu-school { font-size: 1.25rem; }
@@ -984,7 +982,10 @@ body.cursor-hover .cursor-ring {
 
   /* —— Contact —— */
   .contact-wrap { padding: 100px 6vw 40px; }
-  .contact-hero { min-height: 240px; }
+  .contact-hero { min-height: 200px; }
+  .contact-art { gap: 6px; }
+  .ca-char { width: clamp(52px, 17vw, 92px) !important; height: clamp(52px, 17vw, 92px) !important; }
+  .contact-glow { width: 300px; height: 300px; }
   .contact-links { flex-direction: column; align-items: center; gap: 12px; }
   .contact-copy { width: 100%; max-width: 320px; justify-content: center; }
   .footer { padding: 50px 6vw 32px; }
