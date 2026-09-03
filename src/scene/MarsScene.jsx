@@ -1135,7 +1135,7 @@ export default function MarsScene({ onOpenWork, onHoverWork }) {
       className="mars-canvas"
       shadows={!MOBILE}
       dpr={[1, MOBILE ? 1.5 : 2]}
-      camera={{ fov: 50, position: [0, 12, 230], near: 0.1, far: 900 }}
+      camera={{ fov: MOBILE ? 66 : 50, position: [0, 12, 230], near: 0.1, far: 900 }}
       onCreated={({ gl }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping;
         gl.toneMappingExposure = 1.2;
