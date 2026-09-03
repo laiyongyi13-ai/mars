@@ -800,7 +800,7 @@ function FlowerField({ onOpenWork, onHoverWork }) {
 
   /* 特写作品花的位置（更远的花田深处，突出） */
   const features = useMemo(() => {
-    const xs = [-8, -2.8, 2.8, 8];
+    const xs = MOBILE ? [-4.3, -1.5, 1.5, 4.3] : [-8, -2.8, 2.8, 8];
     const zs = [-40, -43, -42.5, -40];
     return WORKS.map((w, i) => {
       const c = TYPE_COLORS[w.type] || TYPE_COLORS.red;
