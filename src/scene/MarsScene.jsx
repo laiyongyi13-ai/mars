@@ -901,17 +901,27 @@ function CameraRig() {
       view.mx = mouse.current.x;
       view.my = mouse.current.y;
     };
+    /* 手机端：横滑环视花园（竖滑仍正常滚动），跳过开场分镜 */
+    const onTouch = (e) => {
+      if (scroll.current < 0.14) return;
+      const t = e.touches[0];
+      if (!t) return;
+      mouse.current.x = (t.clientX / window.innerWidth - 0.5) * 2;
+      view.mx = mouse.current.x;
+    };
     recalc();
     onScroll();
     const timer = setTimeout(recalc, 600);
     window.addEventListener("scroll", onScroll);
     window.addEventListener("resize", recalc);
     window.addEventListener("mousemove", onMove);
+    window.addEventListener("touchmove", onTouch, { passive: true });
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", recalc);
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchmove", onTouch);
     };
   }, []);
 
@@ -938,7 +948,7 @@ function CameraRig() {
       focus = Math.max(0, Math.min(1, (p - (aS - r)) / r, ((aE + r) - p) / r));
     }
 
-    const swayX = mouse.current.x * 1.4;
+    const swayX = mouse.current.x * (MOBILE ? 3.2 : 1.4);
     const swayY = mouse.current.y * 0.55;
     camera.position.x += ((cx + swayX) - camera.position.x) * 0.06;
     camera.position.y += ((cy - swayY) - camera.position.y) * 0.06;
