@@ -992,7 +992,7 @@ body.cursor-hover .cursor-ring {
   .footer-poem { font-size: 1.1rem; }
 
   /* —— 音乐播放器：面板改为不溢出的紧凑版 —— */
-  .player { right: 16px; bottom: 16px; }
+  .player { right: 16px; bottom: 64px; }
   .player-toggle { width: 56px; height: 56px; }
   .player-panel {
     right: 68px; bottom: 4px; gap: 10px; padding: 9px 16px 9px 9px;
