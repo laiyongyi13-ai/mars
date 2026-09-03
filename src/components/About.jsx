@@ -29,8 +29,8 @@ export default function About() {
         <div className="about-grid">
           <div className="about-copy reveal">
             <p>
-              我是 <strong>YY</strong> —— 一名信息与交互设计师，也在慢慢摸索属于自己的 AI 工作流。
-              习惯从日常的缝隙里捡拾灵感，让感性负责发芽，理性负责生根。
+              哈喽啊，我是 <strong>YY</strong>，一个正为找工作发愁的大四学生。
+              地球工作难找啊，我还是回家种花吧。
             </p>
             <p>
               此刻我在<strong>华南理工大学</strong>修读信息与交互设计，
