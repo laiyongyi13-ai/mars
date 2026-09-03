@@ -62,11 +62,19 @@ export default function Timeline() {
             {ITEMS.map((it, i) => (
               <li className="timeline-item reveal" key={i}>
                 <span className={`bud bud-${it.bud}`}></span>
-                <div className="tl-card">
-                  <span className="tl-year">{it.year}</span>
-                  <h3>{it.title}</h3>
-                  <p className="tl-role">{it.role}</p>
-                  <p>{it.desc}</p>
+                <div className="tarot">
+                  <div className="tarot-inner">
+                    <div className={`tarot-back bud-face-${it.bud}`} aria-hidden="true">
+                      <span className="tarot-emblem">✦</span>
+                      <span className="tarot-no">{String(ITEMS.length - i).padStart(2, "0")}</span>
+                    </div>
+                    <div className="tl-card tarot-front">
+                      <span className="tl-year">{it.year}</span>
+                      <h3>{it.title}</h3>
+                      <p className="tl-role">{it.role}</p>
+                      <p>{it.desc}</p>
+                    </div>
+                  </div>
                 </div>
               </li>
             ))}
