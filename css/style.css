@@ -339,31 +339,26 @@ section { position: relative; z-index: 1; }
 /* ============================================================
    Timeline
    ============================================================ */
-.timeline-wrap { position: relative; max-width: 1100px; margin: 0 auto; }
-.vine-line {
-  position: absolute; top: 0; left: 50%; width: 1.5px; height: 0;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, var(--flower-red), var(--flower-blue), var(--flower-orange), var(--flower-red));
-  opacity: 0.3; transition: height 1.6s var(--ease);
+.timeline-wrap { position: relative; max-width: 1180px; margin: 0 auto; }
+.vine-line { display: none; }
+.timeline-list {
+  list-style: none; position: relative; z-index: 2;
+  display: flex; justify-content: center; align-items: stretch; gap: 20px;
+  padding-top: 34px;
 }
-.timeline-list { list-style: none; position: relative; z-index: 2; }
-.timeline-item { position: relative; width: 50%; padding: 24px 40px; }
-.timeline-item:nth-child(odd) { left: 0; text-align: right; }
-.timeline-item:nth-child(even) { left: 50%; }
-.bud {
-  position: absolute; top: 38px; width: 10px; height: 10px; border-radius: 50%; z-index: 3;
-  transition: all 0.4s var(--ease);
-}
-.bud-red    { background: var(--flower-red); box-shadow: 0 0 8px rgba(220,0,0,0.4); }
-.bud-blue   { background: var(--flower-blue); box-shadow: 0 0 8px rgba(114,180,217,0.4); }
-.bud-orange { background: var(--flower-orange); box-shadow: 0 0 8px rgba(244,168,39,0.4); }
-.timeline-item:nth-child(odd) .bud { right: -5px; }
-.timeline-item:nth-child(even) .bud { left: -5px; }
+.timeline-item { position: relative; flex: 1 1 0; max-width: 275px; min-height: 410px; }
+.bud { display: none; }
+/* 桌面：四张牌微扇形排布 */
+.timeline-item:nth-child(1) .tarot { transform: rotate(-6deg) translateY(16px); }
+.timeline-item:nth-child(2) .tarot { transform: rotate(-2deg) translateY(2px); }
+.timeline-item:nth-child(3) .tarot { transform: rotate(2deg) translateY(2px); }
+.timeline-item:nth-child(4) .tarot { transform: rotate(6deg) translateY(16px); }
+.timeline-item:hover .tarot { transform: rotate(0deg) translateY(-8px); z-index: 5; }
 
 /* —— 塔罗牌翻转：默认牌背朝上，滚入视口逐张翻面 —— */
-.tarot { perspective: 1400px; }
+.tarot { perspective: 1400px; height: 100%; transition: transform 0.55s var(--ease); }
 .tarot-inner {
-  position: relative; transform-style: preserve-3d;
+  position: relative; transform-style: preserve-3d; height: 100%;
   transform: rotateY(180deg);
   transition: transform 1s var(--ease);
 }
@@ -393,19 +388,17 @@ section { position: relative; z-index: 1; }
 .bud-face-blue   { box-shadow: inset 0 0 0 4px rgba(114,180,217,0.18), 0 18px 50px rgba(0,0,0,0.35); }
 .bud-face-orange { box-shadow: inset 0 0 0 4px rgba(244,168,39,0.18), 0 18px 50px rgba(0,0,0,0.35); }
 .tl-card {
-  padding: 26px 28px; border-radius: 16px; text-align: left;
+  padding: 26px 28px; border-radius: 16px; text-align: left; height: 100%;
   background: var(--glass-bg); border: 1px solid var(--glass-border);
-  backdrop-filter: blur(12px); transition: all 0.5s var(--ease);
+  backdrop-filter: blur(12px); transition: background 0.5s var(--ease), border-color 0.5s var(--ease);
 }
 .tl-year { font-family: var(--serif); font-size: 1.05rem; color: var(--flower-orange); font-weight: 600; letter-spacing: 0.02em; }
-.tl-card h3 { font-size: 1.45rem; margin: 8px 0 5px; color: var(--text); font-weight: 600; }
-.tl-role { color: var(--flower-blue); font-size: 1.02rem; font-weight: 500; margin-bottom: 10px; }
-.tl-card p:last-child { font-size: 1.05rem; color: var(--text-2); line-height: 1.8; }
+.tl-card h3 { font-size: 1.3rem; margin: 8px 0 5px; color: var(--text); font-weight: 600; }
+.tl-role { color: var(--flower-blue); font-size: 1rem; font-weight: 500; margin-bottom: 10px; }
+.tl-card p:last-child { font-size: 0.96rem; color: var(--text-2); line-height: 1.75; }
 .timeline-item:hover .tl-card {
-  transform: translateY(-5px); background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.1); box-shadow: 0 18px 50px rgba(0,0,0,0.3);
+  background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);
 }
-.timeline-item:hover .bud { transform: scale(1.5); }
 
 /* ============================================================
    花园 (Portfolio) — 半球火星 + 弧形花朵
@@ -971,15 +964,10 @@ body.cursor-hover .cursor-ring {
   }
   .nav-links.open { transform: translateX(0); }
   .nav-toggle { display: flex; z-index: 901; }
-  .vine-line { display: none; }
-  .timeline-item, .timeline-item:nth-child(even) { width: 100%; left: 0; text-align: left; padding: 14px 0 14px 26px; }
-  .timeline-item:nth-child(odd) { text-align: left; }
-  .timeline-item .bud, .timeline-item:nth-child(odd) .bud, .timeline-item:nth-child(even) .bud { left: -4px; right: auto; }
-  .timeline-list::before {
-    content: ""; position: absolute; left: 2px; top: 0; bottom: 0; width: 1.5px;
-    background: linear-gradient(180deg, var(--flower-red), var(--flower-blue), var(--flower-orange));
-    opacity: 0.2;
-  }
+  /* 时间线：手机竖排卡牌，去扇形，逐张翻面 */
+  .timeline-list { flex-direction: column; gap: 16px; padding-top: 0; }
+  .timeline-item { max-width: 100%; min-height: 0; }
+  .timeline-item .tarot { transform: none !important; }
   .garden { min-height: 108vh; }
   .garden-scene { min-height: 420px; }
   .garden-planet { width: 480px; height: 480px; bottom: -220px; }
