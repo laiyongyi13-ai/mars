@@ -362,7 +362,7 @@ function MarsPlanet() {
     if (grp.current) {
       grp.current.visible = p < 0.066 && vis > 0.002;   // 地面门开启前必然隐藏，杜绝残留灰圆
       if (!drag.current.on) {
-        grp.current.rotation.y += vel.current.y + 0.0006;
+        grp.current.rotation.y += vel.current.y + 0.0016;
         grp.current.rotation.x += vel.current.x;
         vel.current.y *= 0.94; vel.current.x *= 0.94;
       }
@@ -455,11 +455,15 @@ function SpaceDust() {
     return { home, pos, vel };
   }, [camera]);
 
-  useFrame(() => {
+  useFrame((state) => {
     const vis = view.p < INTRO_MAX;
     if (ref.current) ref.current.visible = vis;
     if (!vis || !ref.current) return;
-    ray.setFromCamera({ x: view.mx, y: -view.my }, camera);
+    /* 手机端无鼠标：让排斥点缓慢画圈，粒子自动漂动 */
+    const t = state.clock.getElapsedTime();
+    const mx = MOBILE ? Math.cos(t * 0.28) * 0.65 : view.mx;
+    const my = MOBILE ? Math.sin(t * 0.22) * 0.5 : view.my;
+    ray.setFromCamera({ x: mx, y: -my }, camera);
     ray.ray.at(camera.position.z + 160, target);
     const attr = ref.current.geometry.attributes.position;
     const { home, pos, vel } = data;
