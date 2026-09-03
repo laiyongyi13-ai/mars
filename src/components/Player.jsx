@@ -47,10 +47,6 @@ export default function Player() {
     else a.pause();
   }, [playing, idx]);
 
-  const toggle = () => {
-    if (!open) setOpen(true);
-    setPlaying((p) => !p);
-  };
   const prev = () => setIdx((i) => (i - 1 + TRACKS.length) % TRACKS.length);
   const next = () => setIdx((i) => (i + 1) % TRACKS.length);
 
@@ -83,7 +79,7 @@ export default function Player() {
           </div>
           <div className="player-controls">
             <button className="ctrl-btn" aria-label="上一首" onClick={prev}>◀◀</button>
-            <button className="play-btn" aria-label="播放/暂停" onClick={toggle}>
+            <button className="play-btn" aria-label="播放/暂停" onClick={() => setPlaying((p) => !p)}>
               {playing ? "❚❚" : "▶"}
             </button>
             <button className="ctrl-btn" aria-label="下一首" onClick={next}>▶▶</button>
@@ -92,7 +88,7 @@ export default function Player() {
         </div>
       </div>
 
-      <button className="player-toggle" aria-label="音乐" onClick={toggle}>
+      <button className="player-toggle" aria-label="音乐" onClick={() => setOpen((o) => !o)}>
         <span className={"player-icon" + (playing ? "" : " beat")}>♪</span>
         <span className="eq"><i /><i /><i /><i /></span>
       </button>
