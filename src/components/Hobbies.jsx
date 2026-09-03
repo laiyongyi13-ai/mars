@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import SplitText from "./SplitText.jsx";
 
 const HOBBIES = [
   { bud: "red", emoji: "📷", title: "摄影", desc: "喜欢用镜头捕捉日常的缝隙，光影、街角与不经意的瞬间，都是灵感的种子。" },
@@ -9,19 +8,6 @@ const HOBBIES = [
 ];
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-
-function TitleFlower() {
-  return (
-    <svg className="title-flower" viewBox="0 0 28 28">
-      <g transform="translate(14,14)">
-        {[0, 72, 144, 216, 288].map((r) => (
-          <ellipse key={r} cx="0" cy="-5" rx="2.5" ry="5" fill="#DC0000" transform={`rotate(${r})`} />
-        ))}
-        <circle cx="0" cy="0" r="2.5" fill="#72B4D9" />
-      </g>
-    </svg>
-  );
-}
 
 export default function Hobbies() {
   const listRef = useRef();
@@ -72,16 +58,6 @@ export default function Hobbies() {
   return (
     <section id="hobbies" className="hobbies" ref={sectionRef}>
       <div className="section-content">
-        <div className="section-head reveal">
-          <div className="section-head-text">
-            <span className="section-tag">Hobbies</span>
-            <h2 className="section-title">
-              <SplitText text="爱好 · 牌面" />
-              <TitleFlower />
-            </h2>
-          </div>
-          <p className="section-desc">往下滑，翻开每一张牌，<br />看看牌面下藏着的小小热爱。</p>
-        </div>
         <div className="hobbies-wrap">
           <ul className="hobby-list" ref={listRef}>
             {HOBBIES.map((h, i) => (

@@ -39,8 +39,8 @@ export default function App() {
       <main>
         <Hero />
         <About />
-        <Timeline />
         <Hobbies />
+        <Timeline />
         <Garden />
         <Contact />
       </main>
