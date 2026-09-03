@@ -822,8 +822,8 @@ function FlowerField({ onOpenWork, onHoverWork }) {
     ];
     const arr = [];
     for (let i = 0; i < (MOBILE ? 28 : 50); i++) {
-      const x = (Math.random() - 0.5) * 28;
-      const z = FIELD_Z + (Math.random() - 0.5) * 20;
+      const x = (Math.random() - 0.5) * 18;
+      const z = FIELD_Z + (Math.random() - 0.5) * 13;
       const c = cols[i % 3];
       arr.push({
         position: [x, terrainH(x, z) + 0.05, z],
