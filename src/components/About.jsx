@@ -33,9 +33,10 @@ export default function About() {
               地球工作难找啊，我还是回家种花吧。
             </p>
             <p>
-              此刻我在<strong>华南理工大学</strong>修读信息与交互设计，
-              把好奇心当作种子四处播撒，偶尔也会结出一点小果实
-              （比如 2025 CADA 概念设计银奖，还有阮灿华校友奖学金）。
+              本质 i 人，不知道为什么测试出来是 e 人；<br />
+              爱运动但却浑身病的玻璃人；<br />
+              审美犹如一张厕纸却读了设计相关专业。<br />
+              总而言之是个充满矛盾的人。
             </p>
           </div>
           <div className="about-mascot-slot reveal" aria-hidden="true"></div>
