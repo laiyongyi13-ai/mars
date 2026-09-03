@@ -27,7 +27,7 @@ export default function Hobbies() {
         const vh = window.innerHeight;
         items.forEach((it) => {
           const r = it.getBoundingClientRect();
-          const f = clamp((vh * 0.82 - r.top) / (vh * 0.3), 0, 1);
+          const f = clamp((vh * 0.95 - r.top) / (vh * 0.32), 0, 1);
           it.style.setProperty("--t", "1");
           it.style.setProperty("--f", f.toFixed(3));
         });
@@ -36,8 +36,8 @@ export default function Hobbies() {
         const total = rect.height - window.innerHeight || 1;
         const p = clamp(-rect.top / total, 0, 1);
         items.forEach((it, i) => {
-          const t = clamp((p - 0.02 - i * 0.02) / 0.14, 0, 1);
-          const f = clamp((p - 0.18 - i * 0.05) / 0.14, 0, 1);
+          const t = clamp((p - 0.02 - i * 0.02) / 0.1, 0, 1);
+          const f = clamp((p - 0.1 - i * 0.04) / 0.12, 0, 1);
           it.style.setProperty("--t", t.toFixed(3));
           it.style.setProperty("--f", f.toFixed(3));
         });
