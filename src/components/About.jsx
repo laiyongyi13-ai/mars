@@ -28,7 +28,6 @@ export default function About() {
         </div>
         <div className="about-grid">
           <div className="about-copy reveal">
-            <p className="diary-line">在荒芜里种花，<br />是我认识世界的方式。</p>
             <p>
               我是 <strong>YY</strong> —— 一名信息与交互设计师，也在慢慢摸索属于自己的 AI 工作流。
               习惯从日常的缝隙里捡拾灵感，让感性负责发芽，理性负责生根。
@@ -38,25 +37,6 @@ export default function About() {
               把好奇心当作种子四处播撒，偶尔也会结出一点小果实
               （比如 2025 CADA 概念设计银奖，还有阮灿华校友奖学金）。
             </p>
-            <div className="about-likes">
-              <span className="likes-label">常做的事</span>
-              <div className="tags">
-                <span className="tag">UX 设计</span>
-                <span className="tag">AI 工作流</span>
-                <span className="tag">胡思乱想</span>
-                <span className="tag">终身学习</span>
-              </div>
-            </div>
-            <div className="about-likes">
-              <span className="likes-label">随手的工具</span>
-              <div className="skills-row">
-                <span className="skill">Figma</span>
-                <span className="skill">Cursor</span>
-                <span className="skill">Codex</span>
-                <span className="skill">Photoshop</span>
-                <span className="skill">AI 辅助设计</span>
-              </div>
-            </div>
           </div>
           <div className="about-mascot-slot reveal" aria-hidden="true"></div>
         </div>
