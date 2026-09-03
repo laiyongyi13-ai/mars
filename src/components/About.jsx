@@ -33,10 +33,10 @@ export default function About() {
               地球工作难找啊，我还是回家种花吧。
             </p>
             <p>
-              本质 i 人，不知道为什么测试出来是 e 人；<br />
-              爱运动但却浑身病的玻璃人；<br />
-              审美犹如一张厕纸却读了设计相关专业。<br />
-              总而言之是个充满矛盾的人。
+              本质 i 人，不知道为什么测试出来是 e 人<br />
+              爱运动但却浑身病的玻璃人<br />
+              审美犹如一张厕纸却读了设计相关专业<br />
+              总而言之是个充满矛盾的人
             </p>
           </div>
           <div className="about-mascot-slot reveal" aria-hidden="true"></div>
