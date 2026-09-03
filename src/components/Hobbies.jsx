@@ -50,8 +50,8 @@ export default function Hobbies() {
         const total = rect.height - window.innerHeight || 1;
         const p = clamp(-rect.top / total, 0, 1);
         items.forEach((it, i) => {
-          const t = clamp((p - 0.05 - i * 0.02) / 0.24, 0, 1);
-          const f = clamp((p - 0.42 - i * 0.06) / 0.2, 0, 1);
+          const t = clamp((p - 0.03 - i * 0.02) / 0.16, 0, 1);
+          const f = clamp((p - 0.24 - i * 0.05) / 0.16, 0, 1);
           it.style.setProperty("--t", t.toFixed(3));
           it.style.setProperty("--f", f.toFixed(3));
         });
