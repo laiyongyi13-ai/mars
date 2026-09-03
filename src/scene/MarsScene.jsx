@@ -948,7 +948,7 @@ function CameraRig() {
       focus = Math.max(0, Math.min(1, (p - (aS - r)) / r, ((aE + r) - p) / r));
     }
 
-    const swayX = mouse.current.x * (MOBILE ? 3.2 : 1.4);
+    const swayX = mouse.current.x * (MOBILE ? 6 : 1.4);
     const swayY = mouse.current.y * 0.55;
     camera.position.x += ((cx + swayX) - camera.position.x) * 0.06;
     camera.position.y += ((cy - swayY) - camera.position.y) * 0.06;
