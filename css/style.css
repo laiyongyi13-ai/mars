@@ -339,31 +339,32 @@ section { position: relative; z-index: 1; }
 /* ============================================================
    Timeline
    ============================================================ */
-.timeline-wrap { position: relative; max-width: 1180px; margin: 0 auto; }
+.timeline { min-height: 240vh; }
+.timeline-wrap { position: sticky; top: 12vh; max-width: 1180px; margin: 0 auto; }
 .vine-line { display: none; }
 .timeline-list {
   list-style: none; position: relative; z-index: 2;
-  display: flex; justify-content: center; align-items: stretch; gap: 20px;
-  padding-top: 34px;
+  height: 440px; display: block;
 }
-.timeline-item { position: relative; flex: 1 1 0; max-width: 275px; min-height: 410px; }
 .bud { display: none; }
-/* 桌面：四张牌微扇形排布 */
-.timeline-item:nth-child(1) .tarot { transform: rotate(-6deg) translateY(16px); }
-.timeline-item:nth-child(2) .tarot { transform: rotate(-2deg) translateY(2px); }
-.timeline-item:nth-child(3) .tarot { transform: rotate(2deg) translateY(2px); }
-.timeline-item:nth-child(4) .tarot { transform: rotate(6deg) translateY(16px); }
-.timeline-item:hover .tarot { transform: rotate(0deg) translateY(-8px); z-index: 5; }
+/* 滚动进度驱动：--t 散开(0→1)、--f 翻面(0→1)，可逆 */
+.timeline-item {
+  position: absolute; top: 0; left: 50%; width: 275px; height: 420px; margin-left: -137px;
+  transform:
+    translateX(calc(var(--x, 0px) * var(--t, 0)))
+    rotate(calc(var(--rot, 0deg) * var(--t, 0) + var(--dr, 0deg) * (1 - var(--t, 0))));
+}
+.timeline-item:nth-child(1) { --x: -430px; --rot: -8deg; --dr: -3deg; z-index: 1; }
+.timeline-item:nth-child(2) { --x: -143px; --rot: -3deg; --dr: -1deg; z-index: 2; }
+.timeline-item:nth-child(3) { --x: 143px; --rot: 3deg; --dr: 1deg; z-index: 3; }
+.timeline-item:nth-child(4) { --x: 430px; --rot: 8deg; --dr: 3deg; z-index: 4; }
 
-/* —— 塔罗牌翻转：默认牌背朝上，滚入视口逐张翻面 —— */
-.tarot { perspective: 1400px; height: 100%; transition: transform 0.55s var(--ease); }
+/* —— 塔罗牌翻转：牌背朝上，--f 驱动翻面 —— */
+.tarot { perspective: 1400px; height: 100%; }
 .tarot-inner {
   position: relative; transform-style: preserve-3d; height: 100%;
-  transform: rotateY(180deg);
-  transition: transform 1s var(--ease);
+  transform: rotateY(calc(180deg - 180deg * var(--f, 0)));
 }
-.timeline-item.reveal .tarot-inner { transition-delay: calc(var(--i, 0) * 120ms); }
-.timeline-item.in .tarot-inner { transform: rotateY(0deg); }
 .tarot-front { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 .tarot-back {
   position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
@@ -964,10 +965,12 @@ body.cursor-hover .cursor-ring {
   }
   .nav-links.open { transform: translateX(0); }
   .nav-toggle { display: flex; z-index: 901; }
-  /* 时间线：手机竖排卡牌，去扇形，逐张翻面 */
-  .timeline-list { flex-direction: column; gap: 16px; padding-top: 0; }
-  .timeline-item { max-width: 100%; min-height: 0; }
-  .timeline-item .tarot { transform: none !important; }
+  /* 时间线：手机竖排卡牌，取消 sticky/散开，翻面仍按滚动可逆 */
+  .timeline { min-height: auto; }
+  .timeline-wrap { position: static; }
+  .timeline-list { position: static; height: auto; display: flex; flex-direction: column; gap: 16px; }
+  .timeline-item { position: static; width: 100%; max-width: 100%; height: auto; min-height: 160px; margin: 0; transform: none; }
+  .timeline-item .tarot, .timeline-item .tarot-inner, .timeline-item .tl-card { height: auto; }
   .garden { min-height: 108vh; }
   .garden-scene { min-height: 420px; }
   .garden-planet { width: 480px; height: 480px; bottom: -220px; }
