@@ -282,7 +282,7 @@ section { position: relative; z-index: 1; }
    About
    ============================================================ */
 .about { min-height: 170vh; display: flex; align-items: center; }
-.about .section-head { margin-bottom: 24px; }
+.about .section-head { margin-bottom: 10px; }
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
 .about-mascot-slot {
   position: relative; min-height: 62vh;
@@ -377,8 +377,8 @@ section { position: relative; z-index: 1; }
 /* ============================================================
    爱好 — 塔罗翻牌：滚动叠牌→散开→翻面（可逆）
    ============================================================ */
-.hobbies { min-height: 190vh; }
-.hobbies-wrap { position: sticky; top: 18vh; max-width: 1180px; margin: 0 auto; }
+.hobbies { min-height: 150vh; }
+.hobbies-wrap { position: sticky; top: 20vh; max-width: 1180px; margin: 0 auto; }
 .hobby-list { list-style: none; position: relative; z-index: 2; height: 440px; display: block; }
 .hobby-item {
   position: absolute; top: 0; left: 50%; width: 275px; height: 420px; margin-left: -137px;

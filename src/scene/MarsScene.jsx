@@ -889,10 +889,12 @@ function CameraRig() {
       if (max <= 0) return;
       const g = document.getElementById("garden");
       const a = document.getElementById("about");
+      const h = document.getElementById("hobbies");
       if (g) gp.current = Math.min(0.95, Math.max(0.1, g.offsetTop / max));
       if (a) {
         aStart.current = Math.max(0.05, (a.offsetTop + a.offsetHeight * 0.18) / max);
-        aEnd.current = Math.min(gp.current - 0.05, (a.offsetTop + a.offsetHeight * 0.82) / max);
+        const regionBottom = h ? h.offsetTop + h.offsetHeight * 0.72 : a.offsetTop + a.offsetHeight * 0.82;
+        aEnd.current = Math.min(gp.current - 0.05, regionBottom / max);
       }
     };
     const onScroll = () => {
