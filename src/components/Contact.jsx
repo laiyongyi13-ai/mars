@@ -61,7 +61,7 @@ export default function Contact() {
   return (
     <section id="contact" className="contact">
       <div className="contact-wrap">
-        <p className="contact-tag reveal">CONTACT — 期待与你的星球产生引力</p>
+        <p className="contact-tag reveal">CONTACT — 期待你的来信</p>
         <div className="contact-hero reveal">
           <div className="contact-glow" aria-hidden="true"></div>
           <div className="contact-art" ref={artRef} aria-label="向阳而生">
