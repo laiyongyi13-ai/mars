@@ -8,8 +8,6 @@ const ITEMS = [
   { bud: "red", year: "2025.06 — 2026.01", title: "井号科技（广州）", role: "产品实习生", desc: "负责核心 UI 视觉设计，交付含组件的交互视觉规范使开发效率提升 30%；深度调研头部竞品，定位 10+ 体验痛点，推动 Bug 修复率达 95%。" },
 ];
 
-const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-
 function TitleFlower() {
   return (
     <svg className="title-flower" viewBox="0 0 28 28">
@@ -24,49 +22,26 @@ function TitleFlower() {
 }
 
 export default function Timeline() {
+  const vineRef = useRef();
   const listRef = useRef();
   const sectionRef = useRef();
 
   useEffect(() => {
-    const sec = sectionRef.current;
-    const list = listRef.current;
-    if (!sec || !list) return;
-    const items = Array.from(list.children);
-    const mq = window.matchMedia("(max-width: 767px)");
-    let raf = 0;
-
-    const apply = () => {
-      raf = 0;
-      if (mq.matches) {
-        const vh = window.innerHeight;
-        items.forEach((it) => {
-          const r = it.getBoundingClientRect();
-          const f = clamp((vh * 0.82 - r.top) / (vh * 0.3), 0, 1);
-          it.style.setProperty("--t", "1");
-          it.style.setProperty("--f", f.toFixed(3));
-        });
-      } else {
-        const rect = sec.getBoundingClientRect();
-        const total = rect.height - window.innerHeight || 1;
-        const p = clamp(-rect.top / total, 0, 1);
-        items.forEach((it, i) => {
-          const t = clamp((p - 0.05 - i * 0.02) / 0.24, 0, 1);
-          const f = clamp((p - 0.42 - i * 0.06) / 0.2, 0, 1);
-          it.style.setProperty("--t", t.toFixed(3));
-          it.style.setProperty("--f", f.toFixed(3));
-        });
+    const onScroll = () => {
+      const sec = sectionRef.current;
+      const vine = vineRef.current;
+      const list = listRef.current;
+      if (!sec || !vine || !list) return;
+      const rect = sec.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (rect.top < vh && rect.bottom > 0) {
+        const p = Math.min(1, (vh - rect.top) / (rect.height + vh * 0.3));
+        vine.style.height = list.offsetHeight * p + "px";
       }
     };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(apply); };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    apply();
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(raf);
-    };
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -82,22 +57,16 @@ export default function Timeline() {
           </div>
         </div>
         <div className="timeline-wrap">
+          <div className="vine-line" ref={vineRef}></div>
           <ul className="timeline-list" ref={listRef}>
             {ITEMS.map((it, i) => (
-              <li className="timeline-item" key={i}>
-                <div className="tarot">
-                  <div className="tarot-inner">
-                    <div className={`tarot-back bud-face-${it.bud}`} aria-hidden="true">
-                      <span className="tarot-emblem">✦</span>
-                      <span className="tarot-no">{String(ITEMS.length - i).padStart(2, "0")}</span>
-                    </div>
-                    <div className="tl-card tarot-front">
-                      <span className="tl-year">{it.year}</span>
-                      <h3>{it.title}</h3>
-                      <p className="tl-role">{it.role}</p>
-                      <p>{it.desc}</p>
-                    </div>
-                  </div>
+              <li className="timeline-item reveal" key={i}>
+                <span className={`bud bud-${it.bud}`}></span>
+                <div className="tl-card">
+                  <span className="tl-year">{it.year}</span>
+                  <h3>{it.title}</h3>
+                  <p className="tl-role">{it.role}</p>
+                  <p>{it.desc}</p>
                 </div>
               </li>
             ))}

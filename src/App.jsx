@@ -6,6 +6,7 @@ import Dust from "./components/Dust.jsx";
 import Hero from "./components/Hero.jsx";
 import About from "./components/About.jsx";
 import Timeline from "./components/Timeline.jsx";
+import Hobbies from "./components/Hobbies.jsx";
 import Garden from "./components/Garden.jsx";
 import Contact from "./components/Contact.jsx";
 import Progress from "./components/Progress.jsx";
@@ -39,6 +40,7 @@ export default function App() {
         <Hero />
         <About />
         <Timeline />
+        <Hobbies />
         <Garden />
         <Contact />
       </main>

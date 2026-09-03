@@ -339,27 +339,58 @@ section { position: relative; z-index: 1; }
 /* ============================================================
    Timeline
    ============================================================ */
-.timeline { min-height: 240vh; }
-.timeline-wrap { position: sticky; top: 12vh; max-width: 1180px; margin: 0 auto; }
-.vine-line { display: none; }
-.timeline-list {
-  list-style: none; position: relative; z-index: 2;
-  height: 440px; display: block;
+.timeline-wrap { position: relative; max-width: 1100px; margin: 0 auto; }
+.vine-line {
+  position: absolute; top: 0; left: 50%; width: 1.5px; height: 0;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, var(--flower-red), var(--flower-blue), var(--flower-orange), var(--flower-red));
+  opacity: 0.3; transition: height 1.6s var(--ease);
 }
-.bud { display: none; }
-/* 滚动进度驱动：--t 散开(0→1)、--f 翻面(0→1)，可逆 */
-.timeline-item {
+.timeline-list { list-style: none; position: relative; z-index: 2; }
+.timeline-item { position: relative; width: 50%; padding: 24px 40px; }
+.timeline-item:nth-child(odd) { left: 0; text-align: right; }
+.timeline-item:nth-child(even) { left: 50%; }
+.bud {
+  position: absolute; top: 38px; width: 10px; height: 10px; border-radius: 50%; z-index: 3;
+  transition: all 0.4s var(--ease);
+}
+.bud-red    { background: var(--flower-red); box-shadow: 0 0 8px rgba(220,0,0,0.4); }
+.bud-blue   { background: var(--flower-blue); box-shadow: 0 0 8px rgba(114,180,217,0.4); }
+.bud-orange { background: var(--flower-orange); box-shadow: 0 0 8px rgba(244,168,39,0.4); }
+.timeline-item:nth-child(odd) .bud { right: -5px; }
+.timeline-item:nth-child(even) .bud { left: -5px; }
+.tl-card {
+  padding: 26px 28px; border-radius: 16px; text-align: left;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px); transition: all 0.5s var(--ease);
+}
+.tl-year { font-family: var(--serif); font-size: 1.05rem; color: var(--flower-orange); font-weight: 600; letter-spacing: 0.02em; }
+.tl-card h3 { font-size: 1.45rem; margin: 8px 0 5px; color: var(--text); font-weight: 600; }
+.tl-role { color: var(--flower-blue); font-size: 1.02rem; font-weight: 500; margin-bottom: 10px; }
+.tl-card p:last-child { font-size: 1.05rem; color: var(--text-2); line-height: 1.8; }
+.timeline-item:hover .tl-card {
+  transform: translateY(-5px); background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1); box-shadow: 0 18px 50px rgba(0,0,0,0.3);
+}
+.timeline-item:hover .bud { transform: scale(1.5); }
+
+/* ============================================================
+   爱好 — 塔罗翻牌：滚动叠牌→散开→翻面（可逆）
+   ============================================================ */
+.hobbies { min-height: 240vh; }
+.hobbies-wrap { position: sticky; top: 12vh; max-width: 1180px; margin: 0 auto; }
+.hobby-list { list-style: none; position: relative; z-index: 2; height: 440px; display: block; }
+.hobby-item {
   position: absolute; top: 0; left: 50%; width: 275px; height: 420px; margin-left: -137px;
   transform:
     translateX(calc(var(--x, 0px) * var(--t, 0)))
     rotate(calc(var(--rot, 0deg) * var(--t, 0) + var(--dr, 0deg) * (1 - var(--t, 0))));
 }
-.timeline-item:nth-child(1) { --x: -430px; --rot: -8deg; --dr: -3deg; z-index: 1; }
-.timeline-item:nth-child(2) { --x: -143px; --rot: -3deg; --dr: -1deg; z-index: 2; }
-.timeline-item:nth-child(3) { --x: 143px; --rot: 3deg; --dr: 1deg; z-index: 3; }
-.timeline-item:nth-child(4) { --x: 430px; --rot: 8deg; --dr: 3deg; z-index: 4; }
+.hobby-item:nth-child(1) { --x: -430px; --rot: -8deg; --dr: -3deg; z-index: 1; }
+.hobby-item:nth-child(2) { --x: -143px; --rot: -3deg; --dr: -1deg; z-index: 2; }
+.hobby-item:nth-child(3) { --x: 143px; --rot: 3deg; --dr: 1deg; z-index: 3; }
+.hobby-item:nth-child(4) { --x: 430px; --rot: 8deg; --dr: 3deg; z-index: 4; }
 
-/* —— 塔罗牌翻转：牌背朝上，--f 驱动翻面 —— */
 .tarot { perspective: 1400px; height: 100%; }
 .tarot-inner {
   position: relative; transform-style: preserve-3d; height: 100%;
@@ -388,18 +419,15 @@ section { position: relative; z-index: 1; }
 .bud-face-red    { box-shadow: inset 0 0 0 4px rgba(220,0,0,0.18), 0 18px 50px rgba(0,0,0,0.35); }
 .bud-face-blue   { box-shadow: inset 0 0 0 4px rgba(114,180,217,0.18), 0 18px 50px rgba(0,0,0,0.35); }
 .bud-face-orange { box-shadow: inset 0 0 0 4px rgba(244,168,39,0.18), 0 18px 50px rgba(0,0,0,0.35); }
-.tl-card {
-  padding: 26px 28px; border-radius: 16px; text-align: left; height: 100%;
+.hobby-card {
+  padding: 30px 26px; border-radius: 16px; text-align: left; height: 100%;
   background: var(--glass-bg); border: 1px solid var(--glass-border);
-  backdrop-filter: blur(12px); transition: background 0.5s var(--ease), border-color 0.5s var(--ease);
+  backdrop-filter: blur(12px);
+  display: flex; flex-direction: column; gap: 12px;
 }
-.tl-year { font-family: var(--serif); font-size: 1.05rem; color: var(--flower-orange); font-weight: 600; letter-spacing: 0.02em; }
-.tl-card h3 { font-size: 1.3rem; margin: 8px 0 5px; color: var(--text); font-weight: 600; }
-.tl-role { color: var(--flower-blue); font-size: 1rem; font-weight: 500; margin-bottom: 10px; }
-.tl-card p:last-child { font-size: 0.96rem; color: var(--text-2); line-height: 1.75; }
-.timeline-item:hover .tl-card {
-  background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);
-}
+.hobby-emoji { font-size: 2.6rem; line-height: 1; }
+.hobby-card h3 { font-size: 1.4rem; color: var(--text); font-weight: 600; }
+.hobby-card p { font-size: 0.98rem; color: var(--text-2); line-height: 1.75; }
 
 /* ============================================================
    花园 (Portfolio) — 半球火星 + 弧形花朵
@@ -965,12 +993,22 @@ body.cursor-hover .cursor-ring {
   }
   .nav-links.open { transform: translateX(0); }
   .nav-toggle { display: flex; z-index: 901; }
-  /* 时间线：手机竖排卡牌，取消 sticky/散开，翻面仍按滚动可逆 */
-  .timeline { min-height: auto; }
-  .timeline-wrap { position: static; }
-  .timeline-list { position: static; height: auto; display: flex; flex-direction: column; gap: 16px; }
-  .timeline-item { position: static; width: 100%; max-width: 100%; height: auto; min-height: 160px; margin: 0; transform: none; }
-  .timeline-item .tarot, .timeline-item .tarot-inner, .timeline-item .tl-card { height: auto; }
+  /* 时间线：手机竖排（原版） */
+  .vine-line { display: none; }
+  .timeline-item, .timeline-item:nth-child(even) { width: 100%; left: 0; text-align: left; padding: 14px 0 14px 26px; }
+  .timeline-item:nth-child(odd) { text-align: left; }
+  .timeline-item .bud, .timeline-item:nth-child(odd) .bud, .timeline-item:nth-child(even) .bud { left: -4px; right: auto; }
+  .timeline-list::before {
+    content: ""; position: absolute; left: 2px; top: 0; bottom: 0; width: 1.5px;
+    background: linear-gradient(180deg, var(--flower-red), var(--flower-blue), var(--flower-orange));
+    opacity: 0.2;
+  }
+  /* 爱好：手机竖排卡牌，取消散开，翻面仍按滚动可逆 */
+  .hobbies { min-height: auto; }
+  .hobbies-wrap { position: static; }
+  .hobby-list { position: static; height: auto; display: flex; flex-direction: column; gap: 16px; }
+  .hobby-item { position: static; width: 100%; max-width: 100%; height: auto; min-height: 150px; margin: 0; transform: none; }
+  .hobby-item .tarot, .hobby-item .tarot-inner, .hobby-item .hobby-card { height: auto; }
   .garden { min-height: 108vh; }
   .garden-scene { min-height: 420px; }
   .garden-planet { width: 480px; height: 480px; bottom: -220px; }
