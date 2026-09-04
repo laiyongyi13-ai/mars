@@ -51,7 +51,7 @@ export default function Timeline() {
           <div className="section-head-text">
             <span className="section-tag">Timeline</span>
             <h2 className="section-title">
-              <SplitText text="轨道 · 经历" />
+              <SplitText text="经历" />
               <TitleFlower />
             </h2>
           </div>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 /* 四幕导航：火星(俯瞰) → 脚印(降落) → 花朵(走进) → 太阳(仰望) */
 const STEPS = [
   { id: "hero", label: "火星", icon: "mars" },
-  { id: "about", label: "地表", icon: "foot" },
+  { id: "about", label: "登陆", icon: "foot" },
   { id: "garden", label: "花园", icon: "flower" },
   { id: "contact", label: "太阳", icon: "sun" },
 ];

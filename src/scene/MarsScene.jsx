@@ -893,7 +893,7 @@ function CameraRig() {
       if (g) gp.current = Math.min(0.95, Math.max(0.1, g.offsetTop / max));
       if (a) {
         aStart.current = Math.max(0.05, (a.offsetTop + a.offsetHeight * 0.18) / max);
-        const regionBottom = h ? h.offsetTop + h.offsetHeight * 0.72 : a.offsetTop + a.offsetHeight * 0.82;
+        const regionBottom = h ? h.offsetTop + h.offsetHeight * 0.9 : a.offsetTop + a.offsetHeight * 0.82;
         aEnd.current = Math.min(gp.current - 0.05, regionBottom / max);
       }
     };

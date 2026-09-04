@@ -80,11 +80,11 @@ section { position: relative; z-index: 1; }
   display: flex; align-items: flex-end; justify-content: space-between;
   gap: 28px; flex-wrap: wrap;
 }
-.section-head-text { display: flex; flex-direction: column; gap: 5px; }
+.section-head-text { display: flex; flex-direction: column; gap: 2px; }
 .section-tag {
-  font-size: 1.15rem; letter-spacing: 0.28em;
-  text-transform: uppercase; color: var(--flower-blue); font-weight: 600;
-  opacity: 0.82;
+  font-size: 1.7rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--flower-blue); font-weight: 700;
+  opacity: 0.9;
 }
 .section-title {
   font-size: clamp(2.1rem, 4.4vw, 3.5rem); color: var(--cream);
@@ -377,8 +377,9 @@ section { position: relative; z-index: 1; }
 /* ============================================================
    爱好 — 塔罗翻牌：滚动叠牌→散开→翻面（可逆）
    ============================================================ */
-.hobbies { min-height: 150vh; margin-top: -6vh; }
-.hobbies-wrap { position: sticky; top: 8vh; max-width: 1180px; margin: 0 auto; }
+.hobbies { min-height: 185vh; margin-top: -6vh; }
+.hobbies .section-content { height: 185vh; padding: 0; }
+.hobbies-wrap { position: sticky; top: calc(50vh - 220px); max-width: 1180px; margin: 0 auto; }
 .hobby-list { list-style: none; position: relative; z-index: 2; height: 440px; display: block; }
 .hobby-item {
   position: absolute; top: 0; left: 50%; width: 275px; height: 420px; margin-left: -137px;
@@ -427,7 +428,12 @@ section { position: relative; z-index: 1; }
 }
 .hobby-emoji { font-size: 2.6rem; line-height: 1; }
 .hobby-card h3 { font-size: 1.4rem; color: var(--text); font-weight: 600; }
-.hobby-card p { font-size: 0.98rem; color: var(--text-2); line-height: 1.75; }
+.hobby-card p { font-size: 0.98rem; color: var(--text-2); line-height: 1.75; white-space: pre-line; }
+.hobby-lead { font-size: 0.9rem; color: var(--text-3); margin-bottom: -6px; }
+.hobby-strong {
+  font-family: var(--serif); font-size: 1.9rem; font-weight: 700;
+  color: var(--flower-orange); line-height: 1.1; letter-spacing: 0.06em;
+}
 
 /* ============================================================
    花园 (Portfolio) — 半球火星 + 弧形花朵
@@ -661,11 +667,10 @@ main .contact-copy { pointer-events: auto; }
 .footer { padding: 70px 5vw 36px; text-align: center; }
 .footer-poem {
   font-family: var(--serif); font-size: 1.35rem; font-style: italic;
-  background: linear-gradient(90deg, var(--flower-red), var(--flower-orange), var(--flower-blue));
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-  margin-bottom: 10px; opacity: 0.75;
+  color: var(--text); opacity: 0.95;
+  margin-bottom: 10px; text-shadow: 0 1px 8px rgba(0,0,0,0.55);
 }
-.footer-copy { font-size: 0.9rem; color: var(--muted); opacity: 0.45; }
+.footer-copy { font-size: 0.9rem; color: var(--text-2); opacity: 0.85; text-shadow: 0 1px 6px rgba(0,0,0,0.5); }
 
 /* ============================================================
    Player
@@ -1005,6 +1010,7 @@ body.cursor-hover .cursor-ring {
   }
   /* 爱好：手机竖排卡牌，取消散开，翻面仍按滚动可逆 */
   .hobbies { min-height: auto; }
+  .hobbies .section-content { height: auto; padding: 90px 6vw 56px; }
   .hobbies-wrap { position: static; }
   .hobby-list { position: static; height: auto; display: flex; flex-direction: column; gap: 16px; }
   .hobby-item { position: static; width: 100%; max-width: 100%; height: auto; min-height: 150px; margin: 0; transform: none; }
@@ -1025,7 +1031,7 @@ body.cursor-hover .cursor-ring {
   .section-head { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 36px; }
   .section-head-text { gap: 4px; }
   .section-desc { text-align: left; max-width: 100%; font-size: 1rem; }
-  .section-tag { font-size: 0.95rem; letter-spacing: 0.22em; }
+  .section-tag { font-size: 1.3rem; letter-spacing: 0.14em; }
 
   /* —— Hero —— */
   .hero-eyebrow { font-size: 0.78rem; letter-spacing: 0.24em; }
